@@ -89,39 +89,39 @@ $result=mysqli_query($conn,$que);
 
 <form action="" method="POST">
 <div class="form-froup">
- <label for="">id :</label>
- <input type="text" value="<?php if(isset($set['id'])){
+ <label for=""></label>
+ <input type="hidden" name="id" value="<?php if(isset($set['id'])){
     echo $set['id']; 
     } ?>" class="form-control">
 </div>
 <div class="form-froup">
  <label for="">name :</label>
- <input type="text" value="<?php if(isset($set['name'])){
+ <input type="text" name="name" value="<?php if(isset($set['name'])){
     echo $set['name']; 
     }
      ?>" class="form-control">
 </div>
 <div class="form-froup">
  <label for="">image :</label>
- <input type="text" value="<?php if(isset($set['image'])){
+ <input type="text" name="image" value="<?php if(isset($set['image'])){
     echo $set['image']; 
     }
      ?>" class="form-control">
 </div>
 <div class="form-froup">
  <label for="">price :</label>
- <input type="text" value="<?php if(isset($set['price'])){
+ <input type="text" name="price" value="<?php if(isset($set['price'])){
     echo $set['price']; 
     }
      ?>" class="form-control">
 </div>
 <div class="form-froup">
  <label for="">document:</label>
- <input type="text" value="<?php if(isset($set['document'])){
+ <input type="text" name="document" value="<?php if(isset($set['document'])){
     echo $set['document']; } ?>" class="form-control">
 </div> <br/>
 
- <input type="submit" value="update" class="btn btn-success">
+ <input type="submit" name="update" value="update" class="btn btn-success">
 
 </form>
 </div>
@@ -129,6 +129,29 @@ $result=mysqli_query($conn,$que);
        </div>
 
 <?php }?>
+
+ <!-- -------------------Edit query----------------- -->
+<?php  
+if(isset($_REQUEST['update']))
+{
+    $name=$_REQUEST['name'];
+    $price=$_REQUEST['price'];
+    $document =$_REQUEST['document'];
+    $image=$_REQUEST['image'];
+    $id=$_REQUEST['id'];
+
+
+    $queupd="UPDATE shop_tb set name='$name', image='$image', price='$price', document='$document' where id = '$id'";
+    $result=mysqli_query($conn,$queupd);
+    if($result)
+    {
+        echo "update complete";
+    }
+}
+
+?>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
